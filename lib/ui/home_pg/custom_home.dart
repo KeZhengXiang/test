@@ -1,9 +1,9 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:my_app/global/global.dart';
-import 'package:my_app/ui/home_pg/child/home_one.dart';
-import 'package:my_app/ui/home_pg/child/home_two.dart';
+import 'package:myapp/global/global.dart';
+import 'package:myapp/ui/home_pg/child/home_one.dart';
+import 'package:myapp/ui/home_pg/child/home_two.dart';
 
 
 

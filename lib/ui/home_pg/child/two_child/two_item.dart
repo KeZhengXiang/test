@@ -2,7 +2,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:my_app/global/global.dart';
+import 'package:myapp/global/global.dart';
 
 
 class TwoNewItem extends StatefulWidget {

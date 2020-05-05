@@ -3,8 +3,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:my_app/global/global.dart';
-import 'package:my_app/ui/home_pg/child/two_child/two_item.dart';
+import 'package:myapp/global/global.dart';
+import 'package:myapp/ui/home_pg/child/two_child/two_item.dart';
 import 'package:video_player/video_player.dart';
 
 
@@ -32,7 +32,8 @@ class _TwoNewVideoState extends State<TwoNewVideo> {
     super.initState();
 
     _controller = VideoPlayerController.network(
-        'http://1252463788.vod2.myqcloud.com/95576ef5vodtransgzp1252463788/e1ab85305285890781763144364/v.f10.mp4')
+//        'http://1252463788.vod2.myqcloud.com/95576ef5vodtransgzp1252463788/e1ab85305285890781763144364/v.f10.mp4')
+    "https://www.runoob.com/try/demo_source/mov_bbb.mp4")
       ..initialize().then((_) {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
         print("player initialize");
@@ -60,7 +61,7 @@ class _TwoNewVideoState extends State<TwoNewVideo> {
         Container(
           width: Global.screen_width,
           height: widget.height,
-          color: Colors.amberAccent,
+//          color: Colors.amberAccent,
           child: Center(
             child: _controller.value.initialized
                 ? AspectRatio(

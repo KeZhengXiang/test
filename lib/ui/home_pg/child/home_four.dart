@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:my_app/global/global.dart';
+import 'package:myapp/global/global.dart';
 
 
 //我-one

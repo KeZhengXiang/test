@@ -4,7 +4,7 @@
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_app/global/log_utils.dart';
+import 'package:myapp/global/log_utils.dart';
 
 class Global {
 

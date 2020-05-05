@@ -1,12 +1,12 @@
 
 import 'dart:async';
-import 'package:my_app/ui/home_pg/custom_home.dart';
-import 'package:my_app/ui/home_pg/home.dart';
+import 'package:myapp/ui/home_pg/custom_home.dart';
+import 'package:myapp/ui/home_pg/home.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:my_app/global/global.dart';
+import 'package:myapp/global/global.dart';
 import '../http/net_work.dart';
 
 //启动页

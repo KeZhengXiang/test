@@ -12,7 +12,6 @@ project 'Runner', {
   'Release' => :release,
 }
 
-
 def parse_KV_file(file, separator='=')
   file_abs_path = File.expand_path(file)
   if !File.exists? file_abs_path
@@ -38,7 +37,7 @@ end
 target 'Runner' do
   use_frameworks!
   use_modular_headers!
-  
+
   # Flutter Pod
 
   copied_flutter_dir = File.join(__dir__, 'Flutter')

@@ -3,8 +3,8 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:my_app/http/code.dart';
-import 'package:my_app/model/head_lines.dart';
+import 'package:myapp/http/code.dart';
+import 'package:myapp/model/head_lines.dart';
 import 'dart:convert' as convert;
 
 class NetWork {
