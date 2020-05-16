@@ -5,6 +5,8 @@ import 'package:myapp/global/global.dart';
 import 'package:myapp/ui/home_pg/child/home_one.dart';
 import 'package:myapp/ui/home_pg/child/home_two.dart';
 
+import 'child/two_child/two_video_controller.dart';
+
 
 
 //首页（自定义）
@@ -35,7 +37,8 @@ class _CustomHomeState extends State<CustomHome> {
       reverse: false,//默认false 禁用反向滑动
       pageSnapping: true,// 默认开启页面捕捉  false 禁用
       onPageChanged: (int index){
-        print("滑动到 $index 页");
+        print("home到 $index 页");
+        TwoVideoController().pause__();
       },
       children: <Widget>[
         HomeOne(body_height),

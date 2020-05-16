@@ -38,6 +38,9 @@ dependencies:
 
   #视频插件
   video_player: ^0.10.9+1
+  chewie: ^0.9.10
+  #
+  flutter_swiper: ^1.1.6
 #  flt_video_player: ^0.0.4
 
   #Dart常用工具类库
