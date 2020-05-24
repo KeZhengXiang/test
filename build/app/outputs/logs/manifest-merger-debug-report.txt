@@ -5,6 +5,7 @@ INJECTED from /Users/one/my_app/android/app/src/main/AndroidManifest.xml:1:1-58:
 INJECTED from /Users/one/my_app/android/app/src/main/AndroidManifest.xml:1:1-58:12
 INJECTED from /Users/one/my_app/android/app/src/main/AndroidManifest.xml:1:1-58:12
 MERGED from /Users/one/my_app/android/app/src/main/AndroidManifest.xml:1:1-58:12
+MERGED from [:fluttertoast] /Users/one/my_app/build/fluttertoast/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:video_player] /Users/one/my_app/build/video_player/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:sqflite] /Users/one/my_app/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:path_provider] /Users/one/my_app/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
@@ -14,6 +15,7 @@ MERGED from [:video_player_web] /Users/one/my_app/build/video_player_web/interme
 MERGED from [:url_launcher] /Users/one/my_app/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-14:12
 MERGED from [:connectivity] /Users/one/my_app/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-10:12
 MERGED from [:url_launcher_macos] /Users/one/my_app/build/url_launcher_macos/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:flutter_custom_dialog] /Users/one/my_app/build/flutter_custom_dialog/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:url_launcher_web] /Users/one/my_app/build/url_launcher_web/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.fragment:fragment:1.0.0] /Users/one/.gradle/caches/transforms-2/files-2.1/b8b68c04ee72209a3beca37e17f7088d/fragment-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/one/.gradle/caches/transforms-2/files-2.1/f046f38cf99e9cbe4891b184ce64db19/legacy-support-core-ui-1.0.0/AndroidManifest.xml:17:1-22:12
@@ -135,6 +137,8 @@ uses-sdk
 INJECTED from /Users/one/my_app/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/one/my_app/android/app/src/main/AndroidManifest.xml
 INJECTED from /Users/one/my_app/android/app/src/main/AndroidManifest.xml
+MERGED from [:fluttertoast] /Users/one/my_app/build/fluttertoast/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:fluttertoast] /Users/one/my_app/build/fluttertoast/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:video_player] /Users/one/my_app/build/video_player/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:video_player] /Users/one/my_app/build/video_player/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:sqflite] /Users/one/my_app/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
@@ -153,6 +157,8 @@ MERGED from [:connectivity] /Users/one/my_app/build/connectivity/intermediates/l
 MERGED from [:connectivity] /Users/one/my_app/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:url_launcher_macos] /Users/one/my_app/build/url_launcher_macos/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:url_launcher_macos] /Users/one/my_app/build/url_launcher_macos/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_custom_dialog] /Users/one/my_app/build/flutter_custom_dialog/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_custom_dialog] /Users/one/my_app/build/flutter_custom_dialog/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:url_launcher_web] /Users/one/my_app/build/url_launcher_web/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:url_launcher_web] /Users/one/my_app/build/url_launcher_web/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [androidx.fragment:fragment:1.0.0] /Users/one/.gradle/caches/transforms-2/files-2.1/b8b68c04ee72209a3beca37e17f7088d/fragment-1.0.0/AndroidManifest.xml:20:5-44

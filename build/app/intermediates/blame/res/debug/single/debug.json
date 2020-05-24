@@ -24,6 +24,10 @@
         "source": "/Users/one/.gradle/caches/transforms-2/files-2.1/0a271e99b6771ad4a84318244d532fb7/core-1.0.0/res/drawable-v21/notification_action_background.xml"
     },
     {
+        "merged": "/Users/one/my_app/build/app/intermediates/res/merged/debug/drawable_toast_bg.xml.flat",
+        "source": "/Users/one/my_app/build/fluttertoast/intermediates/packaged_res/debug/drawable/toast_bg.xml"
+    },
+    {
         "merged": "/Users/one/my_app/build/app/intermediates/res/merged/debug/drawable-mdpi-v4_notification_bg_low_pressed.9.png.flat",
         "source": "/Users/one/.gradle/caches/transforms-2/files-2.1/0a271e99b6771ad4a84318244d532fb7/core-1.0.0/res/drawable-mdpi-v4/notification_bg_low_pressed.9.png"
     },
@@ -118,6 +122,10 @@
     {
         "merged": "/Users/one/my_app/build/app/intermediates/res/merged/debug/layout-v21_notification_action_tombstone.xml.flat",
         "source": "/Users/one/.gradle/caches/transforms-2/files-2.1/0a271e99b6771ad4a84318244d532fb7/core-1.0.0/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/one/my_app/build/app/intermediates/res/merged/debug/layout_toast_custom.xml.flat",
+        "source": "/Users/one/my_app/build/fluttertoast/intermediates/packaged_res/debug/layout/toast_custom.xml"
     },
     {
         "merged": "/Users/one/my_app/build/app/intermediates/res/merged/debug/drawable-xhdpi-v4_notify_panel_notification_icon_bg.png.flat",

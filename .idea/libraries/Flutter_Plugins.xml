@@ -11,6 +11,8 @@
       <root url="file://$PROJECT_DIR$/../flutter/.pub-cache/hosted/pub.flutter-io.cn/sqflite-1.3.0" />
       <root url="file://$PROJECT_DIR$/../flutter/.pub-cache/hosted/pub.flutter-io.cn/connectivity-0.3.2" />
       <root url="file://$PROJECT_DIR$/../flutter/.pub-cache/hosted/pub.flutter-io.cn/wakelock-0.1.4+1" />
+      <root url="file://$PROJECT_DIR$/../flutter/.pub-cache/hosted/pub.flutter-io.cn/fluttertoast-4.0.1" />
+      <root url="file://$PROJECT_DIR$/../flutter/.pub-cache/hosted/pub.flutter-io.cn/flutter_custom_dialog-1.0.19" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

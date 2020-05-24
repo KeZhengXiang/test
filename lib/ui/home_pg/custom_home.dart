@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:myapp/global/global.dart';
 import 'package:myapp/ui/home_pg/child/home_one.dart';
 import 'package:myapp/ui/home_pg/child/home_two.dart';
-
+import 'package:myapp/test/test_main.dart';
 import 'child/two_child/two_video_controller.dart';
 
 
@@ -58,6 +58,7 @@ class _CustomHomeState extends State<CustomHome> {
         height: Global.screen_height,
         child: Stack(
           children: <Widget>[
+
             //显示区
             Positioned(
               top: 0,
@@ -93,6 +94,24 @@ class _CustomHomeState extends State<CustomHome> {
                   width: Global.screen_width,
                   height: Global.padding_bottom,
                   color: Colors.red,
+                ),
+              ),
+            ),
+
+            //测试
+            Positioned(
+              left: 20,
+              top: 200,
+              child: Opacity(
+                opacity: 0.7,
+                child: RaisedButton.icon(
+                  icon: Icon(Icons.send),
+                  label: Text("测试"),
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      return TestMain();
+                    }));
+                  },
                 ),
               ),
             ),
