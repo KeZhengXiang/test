@@ -2,11 +2,14 @@
 
 // 公共类
 import 'dart:ui' as ui;
+import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:myapp/global/log_utils.dart';
 
 class Global {
+
+  static EventBus eventBus = EventBus();
 
   static double screen_width = 0;
   static double screen_height = 0;

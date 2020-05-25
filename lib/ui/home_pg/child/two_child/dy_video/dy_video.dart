@@ -5,7 +5,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:myapp/global/event_mgr.dart';
 import 'package:myapp/global/global.dart';
+import 'package:myapp/global/log_utils.dart';
 import 'package:myapp/ui/home_pg/child/two_child/new_video/new_video_item.dart';
 import 'package:myapp/ui/home_pg/child/two_child/two_video_controller.dart';
 import 'package:video_player/video_player.dart';
@@ -41,7 +43,7 @@ class _DyVideoState extends State<DyVideo>
   void initState() {
     // TODO: implement initState
     super.initState();
-    print("two_new initState");
+    LogUtils.log("two_new initState");
 
     itemCount = 3;
     initIndex = 0;
@@ -52,7 +54,7 @@ class _DyVideoState extends State<DyVideo>
     // TODO: implement dispose
     super.dispose();
 
-    print("two_new dispose");
+    LogUtils.log("two_new dispose");
 
   }
 
@@ -61,7 +63,7 @@ class _DyVideoState extends State<DyVideo>
     //视频试图
     Swiper swiper = Swiper(
       itemBuilder: (BuildContext context,int index){
-        print("create  index = $index");
+        LogUtils.log("create  index = $index");
         return DyVideoItem(index,Global.screen_width, widget.height,(){
           //pause
           tc.clist.forEach((element) {
@@ -82,13 +84,14 @@ class _DyVideoState extends State<DyVideo>
       itemCount: itemCount,
       control: _swiperControl,
       onIndexChanged: (int index){
-        print("index $index");
+        LogUtils.log("---======-------===---------------  index $index",type: 1);
+        Global.eventBus.fire(DYChangeIndexEvent(index,initIndex));
         initIndex = index;
       },
 
       onTap: (int index){
         itemCount = 1000;
-        print("--------------itemCount $itemCount");
+        LogUtils.log("--------------itemCount $itemCount");
         setState(() {
 
         });

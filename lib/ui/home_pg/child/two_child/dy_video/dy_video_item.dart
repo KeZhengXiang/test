@@ -1,8 +1,13 @@
 
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:event_bus/event_bus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:myapp/global/event_mgr.dart';
 import 'package:myapp/global/global.dart';
+import 'package:myapp/global/log_utils.dart';
 import 'package:myapp/ui/home_pg/child/two_child/two_video_controller.dart';
 import 'package:video_player/video_player.dart';
 
@@ -23,9 +28,7 @@ class DyVideoItem extends StatefulWidget {
 
 class _DyVideoItemState extends State<DyVideoItem> {
   String _url = "https://www.runoob.com/try/demo_source/mov_bbb.mp4";
-//  String _url = "http://flv.bn.netease.com/videolib3/1611/02/ECURs3951/SD/ECURs3951-mobile.mp4";
-
-
+  StreamSubscription<DYChangeIndexEvent> _eventBus;
   VideoPlayerController _controller;
   bool _videoError = false;
 
@@ -33,14 +36,25 @@ class _DyVideoItemState extends State<DyVideoItem> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    print("    ----  DyVideoItem initState ${widget.index}");
+    LogUtils.log("    ----  DyVideoItem initState ${widget.index}");
+
+    _eventBus = Global.eventBus.on<DYChangeIndexEvent>().listen((event) {
+      // All events are of type UserLoggedInEvent (or subtypes of it).
+      if (widget.index != event.curIndex) return;
+      LogUtils.log("=======================event.curIndex = ${event.curIndex}");
+      TwoVideoController().pause__();
+      _controller.play();
+    });
 
     _controller = VideoPlayerController.network(this._url)..initialize().then((_) {
       // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-      print("player initialize");
+      LogUtils.log("player initialize");
 
 //      TwoVideoController().pause__();
-      _controller.play();
+      if(widget.index == 0){
+        _controller.play();
+      }
+
       setState(() {});
     });
     _controller.setLooping(true);
@@ -52,8 +66,9 @@ class _DyVideoItemState extends State<DyVideoItem> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    print("DyVideoItem dispose ${widget.index}");
+    LogUtils.log("DyVideoItem dispose ${widget.index}",type: 1);
 
+    _eventBus?.cancel();
 
     TwoVideoController().remove__(_controller);
     _controller.dispose();
@@ -72,7 +87,7 @@ class _DyVideoItemState extends State<DyVideoItem> {
 
   @override
   Widget build(BuildContext context) {
-    print("DyVideoItem build ${widget.index}");
+    LogUtils.log("DyVideoItem build ${widget.index}");
     return Column(
       children: <Widget>[
         //播放器
@@ -102,7 +117,7 @@ class _DyVideoItemState extends State<DyVideoItem> {
                 child: Center(
                   child: GestureDetector(
                     onTap: () {
-                      print("_controller.value.isPlaying = ${_controller.value.isPlaying}");
+                      LogUtils.log("_controller.value.isPlaying = ${_controller.value.isPlaying}");
                       setState(() {
                         _controller.value.isPlaying
                             ? pause()
