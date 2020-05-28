@@ -39,7 +39,7 @@ class _NewVideoItemState extends State<NewVideoItem> {
         setState(() {});
       });
     _controller.setLooping(true);
-    TwoVideoController().add__(_controller);
+    videoMgr.add__(_controller);
 //    _controller.addListener(_videoListener);
   }
 
@@ -68,28 +68,10 @@ class _NewVideoItemState extends State<NewVideoItem> {
     print("TwoNewItem dispose ${widget.index}");
 
 
-    TwoVideoController().remove__(_controller);
+    videoMgr.remove__(_controller);
     _controller.removeListener(_videoListener);
     _controller.dispose();
   }
-
-  void pause(){
-//    widget._pause();
-    _controller.pause();
-//    setState(() {
-//
-//    });
-  }
-
-  void play(){
-    widget._play();
-    _controller.play();
-//    setState(() {
-//
-//    });
-  }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -117,22 +99,20 @@ class _NewVideoItemState extends State<NewVideoItem> {
                 ),
               ),
               // 播放按钮
-              Container(
-                width: widget.width,
-                height: widget.height - 40,
-                child: Center(
-                  child: GestureDetector(
-                    onTap: () {
-                      print("_controller.value.isPlaying = ${_controller.value.isPlaying}");
-                      setState(() {
-                        _controller.value.isPlaying
-                            ? pause()
-                            : play();
-                      });
-                    },
-                    child: Icon(
-                      _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-                    ),
+              GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _controller.value.isPlaying
+                          ? pause()
+                          : play();
+                    });
+                  },
+                child: Container(
+                  width: widget.width,
+                  height: widget.height - 40,
+                  color: Color(0x0ffffff),
+                  child: Center(
+                    child:_controller.value.isPlaying ? Text("") : Icon(Icons.play_arrow),
                   ),
                 ),
               ),
@@ -162,5 +142,24 @@ class _NewVideoItemState extends State<NewVideoItem> {
     );
 
 
+  }
+
+
+
+  void pause(){
+//    widget._pause();
+    _controller.pause();
+//    setState(() {
+//
+//    });
+  }
+
+  void play(){
+    videoMgr.indexList[0] = widget.index;
+    widget._play();
+    _controller.play();
+//    setState(() {
+//
+//    });
   }
 }

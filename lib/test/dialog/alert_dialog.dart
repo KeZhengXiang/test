@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_dialog/flutter_custom_dialog.dart';
+import 'package:myapp/global/global.dart';
 
 YYDialog YYAlertDialogBody() {
   return YYDialog().build()
@@ -221,10 +222,10 @@ YYDialog YYAlertDialogWithBarrierDismiss() {
 
 YYDialog YYAlertDialogWithGravity({width, gravity, doubleButtonGravity}) {
   return YYDialog().build()
-    ..width = width
+//    ..height = Global.screen_height * 0.45
     ..gravity = gravity
     ..gravityAnimationEnable = true
-    ..borderRadius = 4.0
+    ..borderRadius = 10.0
     ..text(
       padding: EdgeInsets.all(18.0),
       text: "Use location service?",

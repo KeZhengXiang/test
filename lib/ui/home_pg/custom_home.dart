@@ -1,7 +1,9 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:myapp/global/event_mgr.dart';
 import 'package:myapp/global/global.dart';
+import 'package:myapp/global/log_utils.dart';
 import 'package:myapp/ui/home_pg/child/home_one.dart';
 import 'package:myapp/ui/home_pg/child/home_two.dart';
 import 'package:myapp/test/test_main.dart';
@@ -36,10 +38,10 @@ class _CustomHomeState extends State<CustomHome> {
       physics: NeverScrollableScrollPhysics(),//禁止滑动
       reverse: false,//默认false 禁用反向滑动
       pageSnapping: true,// 默认开启页面捕捉  false 禁用
-      onPageChanged: (int index){
-        print("home到 $index 页");
-        TwoVideoController().pause__();
-      },
+//      onPageChanged: (int index){
+//        LogUtils.log("home到 $index 页");
+//        if(index != 1) videoMgr.pause__();
+//      },
       children: <Widget>[
         HomeOne(body_height),
         HomeTwo(body_height),
@@ -79,9 +81,7 @@ class _CustomHomeState extends State<CustomHome> {
                 width: Global.screen_width,
                 height: bottom_height,
                 color: Colors.red,
-                child: CustomTabBarItem(bottom_height,(int index){
-                  controller.jumpToPage(index);
-                }),
+                child: CustomTabBarItem(bottom_height,pageChange),
               ),
             ),
 
@@ -119,6 +119,14 @@ class _CustomHomeState extends State<CustomHome> {
         ),
       ),
     );
+  }
+
+  // 点击home标签回调响应
+  void pageChange(int index){
+    LogUtils.log("home到 $index 页");
+    controller.jumpToPage(index);
+    videoMgr.pause__();
+    Global.eventBus.fire(HomeChangeTabelEvent(index));
   }
 }
 
@@ -198,7 +206,6 @@ class _CustomTabBarItemState extends State<CustomTabBarItem> {
   }
 
   void onTap(int _index){
-    print(_index);
     setState(() {
       index = _index;
     });

@@ -1,8 +1,6 @@
 
 import 'dart:async';
 
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:event_bus/event_bus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/global/event_mgr.dart';
@@ -11,7 +9,7 @@ import 'package:myapp/global/log_utils.dart';
 import 'package:myapp/ui/home_pg/child/two_child/two_video_controller.dart';
 import 'package:video_player/video_player.dart';
 
-
+//视频层组件
 class DyVideoItem extends StatefulWidget {
   final int index;
   final double width;
@@ -27,10 +25,11 @@ class DyVideoItem extends StatefulWidget {
 }
 
 class _DyVideoItemState extends State<DyVideoItem> {
+
   String _url = "https://www.runoob.com/try/demo_source/mov_bbb.mp4";
+
   StreamSubscription<DYChangeIndexEvent> _eventBus;
   VideoPlayerController _controller;
-  bool _videoError = false;
 
   @override
   void initState() {
@@ -40,9 +39,10 @@ class _DyVideoItemState extends State<DyVideoItem> {
 
     _eventBus = Global.eventBus.on<DYChangeIndexEvent>().listen((event) {
       // All events are of type UserLoggedInEvent (or subtypes of it).
-      if (widget.index != event.curIndex) return;
-      LogUtils.log("=======================event.curIndex = ${event.curIndex}");
-      TwoVideoController().pause__();
+      if (widget.index != event.index) return;
+      LogUtils.log("=======================event.curIndex = ${event.index}",type: 2);
+      videoMgr.pause__();
+      setState(() {});
       _controller.play();
     });
 
@@ -50,7 +50,7 @@ class _DyVideoItemState extends State<DyVideoItem> {
       // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
       LogUtils.log("player initialize");
 
-//      TwoVideoController().pause__();
+//      videoMgr.pause__();
       if(widget.index == 0){
         _controller.play();
       }
@@ -58,7 +58,7 @@ class _DyVideoItemState extends State<DyVideoItem> {
       setState(() {});
     });
     _controller.setLooping(true);
-    TwoVideoController().add__(_controller);
+    videoMgr.add__(_controller);
   }
 
 
@@ -70,24 +70,13 @@ class _DyVideoItemState extends State<DyVideoItem> {
 
     _eventBus?.cancel();
 
-    TwoVideoController().remove__(_controller);
+    videoMgr.remove__(_controller);
     _controller.dispose();
   }
 
-  void pause(){
-    _controller.pause();
-  }
-
-  void play(){
-    widget._play();
-    _controller.play();
-  }
-
-
-
   @override
   Widget build(BuildContext context) {
-    LogUtils.log("DyVideoItem build ${widget.index}");
+    LogUtils.log("DyVideoItem build ${widget.index}",type: 2);
     return Column(
       children: <Widget>[
         //播放器
@@ -110,26 +99,7 @@ class _DyVideoItemState extends State<DyVideoItem> {
                   ): Container(),
                 ),
               ),
-              // 播放按钮
-              Container(
-                width: widget.width,
-                height: widget.height,
-                child: Center(
-                  child: GestureDetector(
-                    onTap: () {
-                      LogUtils.log("_controller.value.isPlaying = ${_controller.value.isPlaying}");
-                      setState(() {
-                        _controller.value.isPlaying
-                            ? pause()
-                            : play();
-                      });
-                    },
-                    child: Icon(
-                      _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-                    ),
-                  ),
-                ),
-              ),
+
               //封面
 //              CachedNetworkImage(
 //                width: widget.width,
@@ -140,7 +110,25 @@ class _DyVideoItemState extends State<DyVideoItem> {
 ////                errorWidget: (context, url, error) =>
 ////                    Image.asset("images/app.jpg"),
 //              )
-              //标题
+
+              // 播放控制
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _controller.value.isPlaying
+                        ? pause()
+                        : play();
+                  });
+                },
+                child: Container(
+                  width: widget.width,
+                  height: widget.height,
+                  color: Color(0x0ffffff),
+                  child: Center(
+                    child: _controller.value.isPlaying ? Text("") : Icon(Icons.play_arrow),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -148,6 +136,17 @@ class _DyVideoItemState extends State<DyVideoItem> {
 //      color: Col
     );
 
+  }
 
+  //
+
+  void pause(){
+    widget._pause();
+    _controller.pause();
+  }
+
+  void play(){
+    widget._play();
+    _controller.play();
   }
 }

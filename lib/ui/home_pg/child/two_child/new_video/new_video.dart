@@ -1,12 +1,15 @@
 //file: 新闻类型 视频页面
 
 
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:myapp/global/event_mgr.dart';
 import 'package:myapp/global/global.dart';
+import 'package:myapp/global/log_utils.dart';
 import 'package:myapp/ui/home_pg/child/two_child/new_video/new_video_item.dart';
 import 'package:myapp/ui/home_pg/child/two_child/two_video_controller.dart';
-import 'package:video_player/video_player.dart';
 
 
 class NewVideo extends StatefulWidget {
@@ -19,22 +22,19 @@ class NewVideo extends StatefulWidget {
 }
 
 class _NewVideoState extends State<NewVideo>
-//    with AutomaticKeepAliveClientMixin
+    with AutomaticKeepAliveClientMixin
 {
-//  @override
-//  bool get wantKeepAlive => true;
+  @override
+  bool get wantKeepAlive => true;
+
+  StreamSubscription<TwoVideoChangeTabelEvent> _eventBus;
 
 
   static const loadingTag = "##loading##"; //表尾标记
   var _words = <String>["9999","9999","9999",loadingTag];
   var isRetrieve = false;//是否请求数据
 
-  var tc = TwoVideoController();
-
-
-  //https://book.flutterchina.club/chapter6/scroll_controller.html
   ScrollController _scrollController = ScrollController(initialScrollOffset:  0.0, keepScrollOffset: true);
-
 
   @override
   void initState() {
@@ -42,9 +42,14 @@ class _NewVideoState extends State<NewVideo>
     super.initState();
     print("two_new initState");
 
-//    _scrollController.addListener(() {
-//      print("_scrollController.offset ${_scrollController.offset}");
-//    });
+    _eventBus = Global.eventBus.on<TwoVideoChangeTabelEvent>().listen((event) {
+      if (ChangePageRefreshEnum.refresh == event.type){
+        LogUtils.log("====重新拉取数据刷新===",type: 2);
+      }else{
+        LogUtils.log("====重新渲染===",type: 2);
+        setState(() {});
+      }
+    });
   }
 
   @override
@@ -53,6 +58,8 @@ class _NewVideoState extends State<NewVideo>
     super.dispose();
 
     print("two_new dispose");
+    videoMgr.pause__();
+    _eventBus?.cancel();
   }
 
   @override
@@ -90,7 +97,7 @@ class _NewVideoState extends State<NewVideo>
         //显示列表项  320 176
         return NewVideoItem(index,Global.screen_width, ((176/320) * Global.screen_width) + 40,(){
           //pause
-          tc.clist.forEach((element) {
+          videoMgr.clist.forEach((element) {
             element.pause();
           });
           setState(() {
@@ -98,7 +105,7 @@ class _NewVideoState extends State<NewVideo>
           });
         }, (){
           //play
-          tc.clist.forEach((element) {
+          videoMgr.clist.forEach((element) {
             element.pause();
           });
           setState(() {

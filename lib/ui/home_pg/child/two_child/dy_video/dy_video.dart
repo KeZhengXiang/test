@@ -1,16 +1,15 @@
 //file: 抖音类型 视频页面
 
 
-import 'package:cached_network_image/cached_network_image.dart';
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:myapp/global/event_mgr.dart';
 import 'package:myapp/global/global.dart';
 import 'package:myapp/global/log_utils.dart';
-import 'package:myapp/ui/home_pg/child/two_child/new_video/new_video_item.dart';
 import 'package:myapp/ui/home_pg/child/two_child/two_video_controller.dart';
-import 'package:video_player/video_player.dart';
 
 import 'dy_video_item.dart';
 
@@ -25,28 +24,39 @@ class DyVideo extends StatefulWidget {
 }
 
 class _DyVideoState extends State<DyVideo>
-//    with AutomaticKeepAliveClientMixin
+    with AutomaticKeepAliveClientMixin
 {
-//  @override
-//  bool get wantKeepAlive => true;
-  var itemCount = 3;
-  var initIndex = 0;
+  @override
+  bool get wantKeepAlive => true;
+
+  StreamSubscription<TwoVideoChangeTabelEvent> _eventBus;
 
   static const loadingTag = "##loading##"; //表尾标记
   var _words = <String>["9999","9999","9999",loadingTag];
   var isRetrieve = false;//是否请求数据
 
-  var tc = TwoVideoController();
   SwiperControl _swiperControl = SwiperControl(iconNext: null,iconPrevious: null);
+
+  int itemCount = 100;
+  int playIndex = 0;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    LogUtils.log("two_new initState");
+    LogUtils.log("dy_video initState");
 
-    itemCount = 3;
-    initIndex = 0;
+    itemCount = 100;
+    playIndex = 0;
+
+    _eventBus = Global.eventBus.on<TwoVideoChangeTabelEvent>().listen((event) {
+      if (ChangePageRefreshEnum.refresh == event.type){
+        LogUtils.log("====重新拉取数据刷新===",type: 2);
+      }else{
+        LogUtils.log("====重新渲染===",type: 2);
+        setState(() {});
+      }
+    });
   }
 
   @override
@@ -54,8 +64,8 @@ class _DyVideoState extends State<DyVideo>
     // TODO: implement dispose
     super.dispose();
 
-    LogUtils.log("two_new dispose");
-
+    LogUtils.log("dy_video dispose");
+    _eventBus?.cancel();
   }
 
   @override
@@ -66,17 +76,17 @@ class _DyVideoState extends State<DyVideo>
         LogUtils.log("create  index = $index");
         return DyVideoItem(index,Global.screen_width, widget.height,(){
           //pause
-          tc.clist.forEach((element) {
+          videoMgr.clist.forEach((element) {
             element.pause();
           });
         }, (){
           //play
-          tc.clist.forEach((element) {
+          videoMgr.clist.forEach((element) {
             element.pause();
           });
         });
       },
-      index: initIndex,
+      index: playIndex,
       loop: false,
       scrollDirection: Axis.vertical,
       autoplay: false,
@@ -84,17 +94,9 @@ class _DyVideoState extends State<DyVideo>
       itemCount: itemCount,
       control: _swiperControl,
       onIndexChanged: (int index){
-        LogUtils.log("---======-------===---------------  index $index",type: 1);
-        Global.eventBus.fire(DYChangeIndexEvent(index,initIndex));
-        initIndex = index;
-      },
-
-      onTap: (int index){
-        itemCount = 1000;
-        LogUtils.log("--------------itemCount $itemCount");
-        setState(() {
-
-        });
+        Global.eventBus.fire(DYChangeIndexEvent(index));
+        playIndex = index;
+        videoMgr.indexList[1] = index;
       },
     );
 

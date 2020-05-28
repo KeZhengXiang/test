@@ -6,6 +6,9 @@ import 'package:myapp/test/test_flutter_custom_dailog.dart';
 import 'package:myapp/test/test_progress_dialog.dart';
 import 'package:myapp/test/test_toast.dart';
 
+import 'comment/comment.dart';
+import 'constrained_box.dart';
+
 
 class TestMain extends StatefulWidget {
   final String title;
@@ -63,6 +66,31 @@ class _TestMainState extends State<TestMain> {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return TestFlutterCustomDailog();
                 }));
+              },
+            ),
+
+            RaisedButton(
+              child: Text("test_constrained_box  约束盒子组件"),
+              disabledColor: Colors.lightBlueAccent,
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return TestConstrainedBox();
+                }));
+              },
+            ),
+
+            //==========
+
+            RaisedButton(
+              child: Text("评论弹窗-类抖音"),
+              disabledColor: Colors.lightBlueAccent,
+              onPressed: (){
+//                Navigator.push(context, MaterialPageRoute(builder: (context) {
+//                  return TestFlutterCustomDailog();
+//                }));
+                GetCommentDialog(context: context);
+
+
               },
             ),
           ],

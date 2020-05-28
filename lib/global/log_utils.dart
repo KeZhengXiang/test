@@ -6,7 +6,7 @@ class LogUtils {
 
 
   static void log(String str, {int type}){
-    if(type != 1) return;
+//    if(type != 2) return;
     print(str);
   }
 
