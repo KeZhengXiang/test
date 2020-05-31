@@ -5,8 +5,8 @@ import 'dart:ui' as ui;
 import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:myapp/global/global_function.dart';
-import 'package:myapp/global/log_utils.dart';
+import 'package:myapp/common//global_function.dart';
+import 'package:myapp/common//log_utils.dart';
 import 'package:package_info/package_info.dart';
 
 class Global {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_dialog/flutter_custom_dialog.dart';
-import 'package:myapp/global/global.dart';
+import 'package:myapp/common//global.dart';
 
 YYDialog YYAlertDialogBody() {
   return YYDialog().build()

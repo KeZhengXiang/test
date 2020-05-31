@@ -1,9 +1,9 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:myapp/global/event_mgr.dart';
-import 'package:myapp/global/global.dart';
-import 'package:myapp/global/log_utils.dart';
+import 'package:myapp/event/event_mgr.dart';
+import 'package:myapp/common/global.dart';
+import 'package:myapp/common/log_utils.dart';
 import 'package:myapp/ui/home_pg/child/home_one.dart';
 import 'package:myapp/ui/home_pg/child/home_two.dart';
 import 'package:myapp/test/test_main.dart';

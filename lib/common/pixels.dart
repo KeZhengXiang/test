@@ -1,6 +1,6 @@
 
 
-//常用像素值
+//常用适配像素值
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Pixels {
@@ -29,25 +29,25 @@ class Pixels {
 
 
   //字体
-  static double fpx1 = ScreenUtil().setSp(1);
-  static double fpx2 = ScreenUtil().setSp(2);
-  static double fpx3 = ScreenUtil().setSp(3);
-  static double fpx4 = ScreenUtil().setSp(4);
-  static double fpx5 = ScreenUtil().setSp(5);
-  static double fpx6 = ScreenUtil().setSp(6);
-  static double fpx7 = ScreenUtil().setSp(7);
-  static double fpx8 = ScreenUtil().setSp(8);
-  static double fpx9 = ScreenUtil().setSp(9);
-  static double fpx10 = ScreenUtil().setSp(10);
-  static double fpx11 = ScreenUtil().setSp(11);
-  static double fpx12 = ScreenUtil().setSp(12);
-  static double fpx13 = ScreenUtil().setSp(13);
-  static double fpx14 = ScreenUtil().setSp(14);
-  static double fpx15 = ScreenUtil().setSp(15);
-  static double fpx16 = ScreenUtil().setSp(16);
-  static double fpx17 = ScreenUtil().setSp(17);
-  static double fpx18 = ScreenUtil().setSp(18);
-  static double fpx19 = ScreenUtil().setSp(19);
+  static double sp1 = ScreenUtil().setSp(1);
+  static double sp2 = ScreenUtil().setSp(2);
+  static double sp3 = ScreenUtil().setSp(3);
+  static double sp4 = ScreenUtil().setSp(4);
+  static double sp5 = ScreenUtil().setSp(5);
+  static double sp6 = ScreenUtil().setSp(6);
+  static double sp7 = ScreenUtil().setSp(7);
+  static double sp8 = ScreenUtil().setSp(8);
+  static double sp9 = ScreenUtil().setSp(9);
+  static double sp10 = ScreenUtil().setSp(10);
+  static double sp11 = ScreenUtil().setSp(11);
+  static double sp12 = ScreenUtil().setSp(12);
+  static double sp13 = ScreenUtil().setSp(13);
+  static double sp14 = ScreenUtil().setSp(14);
+  static double sp15 = ScreenUtil().setSp(15);
+  static double sp16 = ScreenUtil().setSp(16);
+  static double sp17 = ScreenUtil().setSp(17);
+  static double sp18 = ScreenUtil().setSp(18);
+  static double sp19 = ScreenUtil().setSp(19);
 
 
 }

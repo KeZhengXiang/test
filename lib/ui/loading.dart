@@ -6,20 +6,20 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:myapp/global/global.dart';
+import 'package:myapp/common/global.dart';
 import '../http/net_work.dart';
 
 //启动页
-class LaunchScreen extends StatefulWidget {
+class Loading extends StatefulWidget {
 
-  LaunchScreen({Key key}): super(key : key);
+  Loading({Key key}): super(key : key);
 
   @override
-  _LaunchScreenState createState() => _LaunchScreenState();
+  _LoadingState createState() => _LoadingState();
 
 }
 
-class _LaunchScreenState extends State<LaunchScreen>{
+class _LoadingState extends State<Loading>{
 
   @override
   void initState() {

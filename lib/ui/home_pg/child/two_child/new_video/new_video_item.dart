@@ -2,7 +2,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:myapp/global/global.dart';
+import 'package:myapp/common/global.dart';
 import 'package:myapp/ui/home_pg/child/two_child/two_video_controller.dart';
 import 'package:video_player/video_player.dart';
 

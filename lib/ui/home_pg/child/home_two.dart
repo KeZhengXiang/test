@@ -3,9 +3,9 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:myapp/global/event_mgr.dart';
-import 'package:myapp/global/global.dart';
-import 'package:myapp/global/log_utils.dart';
+import 'package:myapp/event/event_mgr.dart';
+import 'package:myapp/common/global.dart';
+import 'package:myapp/common/log_utils.dart';
 import 'package:myapp/ui/home_pg/child/two_child/dy_video/dy_video.dart';
 import 'package:myapp/ui/home_pg/child/two_child/new_video/new_video.dart';
 import 'package:myapp/ui/home_pg/child/two_child/two_video_controller.dart';
