@@ -6,8 +6,10 @@ import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:myapp/global/log_utils.dart';
+import 'package:package_info/package_info.dart';
 
 class Global {
+  static bool isTransfer = false;
 
   static EventBus eventBus = EventBus();
 
@@ -18,9 +20,36 @@ class Global {
   static double padding_bottom = 0;
 
 
+  //APP名称
+  static String appName;
+  //包名
+  static String packageName;
+  //版本名
+  static String version;
+  //版本号
+  static String buildNumber;
+  static void getPackageInfo() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
+    //APP名称
+    appName = packageInfo.appName;
+    //包名
+    packageName = packageInfo.packageName;
+    //版本名
+    version = packageInfo.version;
+    //版本号
+    buildNumber = packageInfo.buildNumber;
+    LogUtils.log("包信息：\n APP名称: $appName\n 包名: $packageName \n 版本名: $version \n 版本号: $buildNumber");
+  }
+
+
 
   //初始化界面数据
   static void init(BuildContext context){
+    if(isTransfer) return;
+    isTransfer = true;
+
+    getPackageInfo();
 
 //    final size = MediaQuery.of(context).size;
 //    screen_width = size.width;

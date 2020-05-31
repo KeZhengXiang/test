@@ -30,11 +30,17 @@ class _LaunchScreenState extends State<LaunchScreen>{
 //    NetWork().getHttp();
   }
 
+
   @override
-  Widget build(BuildContext context) {
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
     //第一个页面调用
     Global.init(context);
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Material(
       child: Container(
         width: Global.screen_width,
