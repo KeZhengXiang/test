@@ -21,7 +21,8 @@ class Loading extends StatefulWidget {
 
 }
 
-class _LoadingState extends State<Loading>{
+class _LoadingState extends State<Loading>
+    with WidgetsBindingObserver {
 
   Timer timer;
 
@@ -30,10 +31,29 @@ class _LoadingState extends State<Loading>{
     // TODO: implement initState
     super.initState();
 
-
-//    NetWork().getHttp();
+    WidgetsBinding.instance.addObserver(this);
   }
 
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // TODO: implement didChangeAppLifecycleState
+    super.didChangeAppLifecycleState(state);
+
+    LogUtils.log("前后台切换监听:" + state.toString());
+    switch (state) {
+      case AppLifecycleState.inactive:// 非活动状态
+        break;
+      case AppLifecycleState.resumed:// 应用程序可见，前台
+        break;
+      case AppLifecycleState.paused: // 应用程序不可见，后台
+        break;
+      case AppLifecycleState.detached:
+      //    该应用程序仍托管在Flutter引擎上，但与任何主机视图均分离。
+      //    当应用程序处于此状态时，引擎将在没有视图的情况下运行。
+      //引擎首次初始化时，或者在由于导航器弹出而销毁视图之后，可能正在附加视图。
+        break;
+    }
+  }
 
   @override
   void didChangeDependencies() {
