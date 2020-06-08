@@ -1,20 +1,23 @@
 
 
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_dialog/flutter_custom_dialog.dart';
 import 'package:myapp/common//global.dart';
+import 'package:myapp/common/log_utils.dart';
 
 
 //构建评论弹窗
-YYDialog GetCommentDialog({BuildContext context}) {
+YYDialog getCommentDialog(double width, double height,{BuildContext context}) {
   return YYDialog().build(context)
-    ..height = Global.screen_height * 0.7
-    ..width = Global.screen_width
+    ..width = width
+    ..height = height
     ..gravity = Gravity.bottom
     ..gravityAnimationEnable = true
     ..borderRadius = 10.0
-    ..widget(CommentDialog(Global.screen_width, Global.screen_height * 0.7))
+    ..widget(CommentDialog(width, height))
     ..show();
 }
 

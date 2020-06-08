@@ -1,5 +1,7 @@
 
 import 'dart:async';
+import 'package:myapp/common/log_utils.dart';
+import 'package:myapp/http/Git.dart';
 import 'package:myapp/ui/home_pg/custom_home.dart';
 import 'package:myapp/ui/home_pg/home.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -21,6 +23,8 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading>{
 
+  Timer timer;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -36,15 +40,22 @@ class _LoadingState extends State<Loading>{
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     //第一个页面调用
-    Global.init(context);
+    Global.uiInit(context);
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    timer?.cancel();
   }
 
   @override
   Widget build(BuildContext context) {
     return Material(
       child: Container(
-        width: Global.screen_width,
-        height: Global.screen_height,
+        width: Global.screenWidth,
+        height: Global.screenHeight,
         child: Stack(
 
           children: <Widget>[
@@ -74,16 +85,14 @@ class _LoadingState extends State<Loading>{
 
             //倒计时
             Positioned(
-              top: Global.padding_top + 10,
+              top: Global.statusBarHeight + 10,
               right: 15,
               child: RefreshStartUpWidget((int type){
                 if (type == 0){
-                  print("时间到，执行启动跳转首页");
+                  LogUtils.log("时间到，请点击跳转首页");
                 }else if(type == 1){
-                  print("被点击，执行启动跳转首页");
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return CustomHome();
-                  }));
+                  LogUtils.log("被点击，执行启动跳转首页");
+                  monitorInfoInit();
                 }
 
               }),
@@ -96,12 +105,50 @@ class _LoadingState extends State<Loading>{
     );
   }
 
+
+
   _launchURL({String url = 'https://flutter.cn'} ) async {
     if (await canLaunch(url)) {
       await launch(url);
     } else {
-      throw 'Could not launch $url';
+      Future.error("Could not launch $url");
+//      throw 'Could not launch $url';
     }
+  }
+
+  //监测
+  void monitorInfoInit(){
+    var recordTime = 0;
+    if(!Global.isCompleteInfoInit){
+      timer = Timer.periodic(Duration(milliseconds: 200), (Timer timer){
+        // 监测至极限时间 放弃
+        recordTime += 200;
+        if(recordTime >= 5 * 1000){
+          //报错弹窗
+          timer.cancel();
+          timer = null;
+          LogUtils.log("监测初始化数据至极限时间 放弃");
+          Future.error("监测初始化数据至极限时间 放弃");
+          return;
+        }
+
+        if(Global.isCompleteInfoInit){
+          timer.cancel();
+          timer = null;
+          goHome();
+        }
+      });
+
+    }else{
+      goHome();
+    }
+  }
+
+  void goHome(){
+
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return CustomHome();
+    }));
   }
 }
 

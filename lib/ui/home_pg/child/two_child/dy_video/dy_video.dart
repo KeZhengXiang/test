@@ -74,7 +74,7 @@ class _DyVideoState extends State<DyVideo>
     Swiper swiper = Swiper(
       itemBuilder: (BuildContext context,int index){
         LogUtils.log("create  index = $index");
-        return DyVideoItem(index,Global.screen_width, widget.height,(){
+        return DyVideoItem(index,Global.screenWidth, widget.height,(){
           //pause
           videoMgr.clist.forEach((element) {
             element.pause();
@@ -101,7 +101,7 @@ class _DyVideoState extends State<DyVideo>
     );
 
     return Container(
-      width: Global.screen_width,
+      width: Global.screenWidth,
       height: widget.height,
       child: Stack(
         children: <Widget>[

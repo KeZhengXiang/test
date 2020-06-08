@@ -95,7 +95,7 @@ class _NewVideoState extends State<NewVideo>
           }
         }
         //显示列表项  320 176
-        return NewVideoItem(index,Global.screen_width, ((176/320) * Global.screen_width) + 40,(){
+        return NewVideoItem(index,Global.screenWidth, ((176/320) * Global.screenWidth) + 40,(){
           //pause
           videoMgr.clist.forEach((element) {
             element.pause();

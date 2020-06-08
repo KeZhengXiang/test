@@ -51,21 +51,21 @@ class _HomeOneState extends State<HomeOne>
     );
 
     return Container(
-      width: Global.screen_width,
+      width: Global.screenWidth,
       height: widget.height,
       child: Column(
         children: <Widget>[
           //顶部安全区
           Container(
             color: Colors.redAccent,
-            width: Global.screen_width,
-            height: Global.padding_top,
+            width: Global.screenWidth,
+            height: Global.statusBarHeight,
           ),
 
           //搜索区
           Container(
             color: Colors.redAccent,
-            width: Global.screen_width,
+            width: Global.screenWidth,
             height: 45,
             child: Center(
               child: Row(
@@ -90,7 +90,7 @@ class _HomeOneState extends State<HomeOne>
                       //搜索条
                       Positioned(
                         child: Container(
-                            width: Global.screen_width - 140,
+                            width: Global.screenWidth - 140,
                             height: 40,
                             decoration: BoxDecoration(
                               color: Color(0x44888888), // 底色

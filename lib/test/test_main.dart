@@ -1,6 +1,9 @@
 //测试主页
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:myapp/common/global.dart';
+import 'package:myapp/common/log_utils.dart';
 import 'package:myapp/test/test_easy_dialog.dart';
 import 'package:myapp/test/test_flutter_custom_dailog.dart';
 import 'package:myapp/test/test_progress_dialog.dart';
@@ -22,6 +25,9 @@ class _TestMainState extends State<TestMain> {
 
   @override
   Widget build(BuildContext context) {
+    LogUtils.log("\n "
+        "设备宽度；${Global.screenWidth}\n "
+        "设备高度；${Global.screenHeight}");
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -85,14 +91,11 @@ class _TestMainState extends State<TestMain> {
               child: Text("评论弹窗-类抖音"),
               disabledColor: Colors.lightBlueAccent,
               onPressed: (){
-//                Navigator.push(context, MaterialPageRoute(builder: (context) {
-//                  return TestFlutterCustomDailog();
-//                }));
-                GetCommentDialog(context: context);
-
-
+                getCommentDialog(Global.screenWidth, (Global.screenHeight * 0.7), context: context);
               },
             ),
+
+
           ],
         ),
       ),

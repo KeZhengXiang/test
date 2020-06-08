@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:myapp/event/event_mgr.dart';
 import 'package:myapp/common/global.dart';
 import 'package:myapp/common/log_utils.dart';
+import 'package:myapp/http/Git.dart';
 import 'package:myapp/ui/home_pg/child/home_one.dart';
 import 'package:myapp/ui/home_pg/child/home_two.dart';
 import 'package:myapp/test/test_main.dart';
+import 'package:myapp/ui/login_route.dart';
 import 'child/two_child/two_video_controller.dart';
 
 
@@ -32,7 +34,7 @@ class _CustomHomeState extends State<CustomHome> {
     //底部标签区  height
     final double bottom_height = 50;
     //显示区  height
-    final double body_height = Global.screen_height - (bottom_height + Global.padding_bottom);
+    final double body_height = Global.screenHeight - (bottom_height + Global.bottomBarHeight);
     PageView pageView = PageView(
       controller: controller,
       physics: NeverScrollableScrollPhysics(),//禁止滑动
@@ -56,8 +58,8 @@ class _CustomHomeState extends State<CustomHome> {
     return Scaffold(
       body: Container(
         color: Colors.white,
-        width: Global.screen_width,
-        height: Global.screen_height,
+        width: Global.screenWidth,
+        height: Global.screenHeight,
         child: Stack(
           children: <Widget>[
 
@@ -65,8 +67,8 @@ class _CustomHomeState extends State<CustomHome> {
             Positioned(
               top: 0,
               child: Container(
-                width: Global.screen_width,
-                height: Global.screen_height - (Global.padding_bottom + bottom_height),
+                width: Global.screenWidth,
+                height: Global.screenHeight - (Global.bottomBarHeight + bottom_height),
                 child: Center(
 //                  child: Text("body"),
                   child: pageView,
@@ -76,9 +78,9 @@ class _CustomHomeState extends State<CustomHome> {
 
             //底部菜单区
             Positioned(
-              bottom: Global.padding_bottom,
+              bottom: Global.bottomBarHeight,
               child: Container(
-                width: Global.screen_width,
+                width: Global.screenWidth,
                 height: bottom_height,
                 color: Colors.red,
                 child: CustomTabBarItem(bottom_height,pageChange),
@@ -89,10 +91,10 @@ class _CustomHomeState extends State<CustomHome> {
             Positioned(
               bottom: 0,
               child: Offstage(
-                offstage: Global.padding_bottom <= 0,//隐藏条件
+                offstage: Global.bottomBarHeight <= 0,//隐藏条件
                 child: Container(
-                  width: Global.screen_width,
-                  height: Global.padding_bottom,
+                  width: Global.screenWidth,
+                  height: Global.bottomBarHeight,
                   color: Colors.red,
                 ),
               ),
@@ -104,17 +106,37 @@ class _CustomHomeState extends State<CustomHome> {
               top: 200,
               child: Opacity(
                 opacity: 0.7,
-                child: RaisedButton.icon(
-                  icon: Icon(Icons.send),
-                  label: Text("测试"),
-                  onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return TestMain();
-                    }));
-                  },
+                child: Container(
+                  width: 120,
+                  height: 200,
+                  child: ListView(
+                    children: <Widget>[
+                      RaisedButton.icon(
+                        icon: Icon(Icons.send),
+                        label: Text("测试"),
+                        onPressed: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) {
+                            return TestMain();
+                          }));
+                        },
+                      ),
+                      RaisedButton.icon(
+                        icon: Icon(Icons.send),
+                        label: Text("登录"),
+                        onPressed: (){
+//                        Git(context).login(login, pwd);
+                          Navigator.push(context, MaterialPageRoute(builder: (context) {
+                            return LoginRoute();
+                          }));
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
+            
+            
           ],
         ),
       ),

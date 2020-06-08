@@ -4,7 +4,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:myapp/http/code.dart';
-import 'package:myapp/models/head_lines.dart';
+import 'package:myapp/models/my/head_lines.dart';
 import 'dart:convert' as convert;
 
 class NetWork {

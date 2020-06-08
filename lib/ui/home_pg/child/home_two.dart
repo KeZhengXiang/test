@@ -78,8 +78,8 @@ with SingleTickerProviderStateMixin{// vsync
 
       controller: _tabController,
       children: <Widget>[
-        NewVideo(widget.height - (Global.padding_top + 40), title: tabs[0],),
-        DyVideo(widget.height - (Global.padding_top + 40), title: tabs[1],),
+        NewVideo(widget.height - (Global.statusBarHeight + 40), title: tabs[0],),
+        DyVideo(widget.height - (Global.statusBarHeight + 40), title: tabs[1],),
 //        Container(
 //          color: Colors.tealAccent,
 //          child: Center(child: Text(tabs[1],textScaleFactor: 5,)),
@@ -100,8 +100,8 @@ with SingleTickerProviderStateMixin{// vsync
         //顶部安全区
         Container(
 //          color: Colors.redAccent,
-          width: Global.screen_width,
-          height: Global.padding_top,
+          width: Global.screenWidth,
+          height: Global.statusBarHeight,
         ),
         Container(
           height: 40,
