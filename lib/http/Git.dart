@@ -9,16 +9,18 @@ import 'package:myapp/models/profile.dart';
 import 'package:myapp/models/repo.dart';
 import 'package:myapp/models/user.dart';
 
+//网络
 class Git {
+
+  BuildContext context;
+  Options _options;
   // 在网络请求过程中可能会需要使用当前的context信息，比如在请求失败时
   // 打开一个新路由，而打开新路由需要context信息。
   Git([this.context]) {
     _options = Options(extra: {"context": context});
   }
 
-  BuildContext context;
-  Options _options;
-  static Dio dio = new Dio(BaseOptions(
+  static Dio dio = Dio(BaseOptions(//测试登录
     baseUrl: 'https://api.github.com/',
     headers: {
       HttpHeaders.acceptHeader: "application/vnd.github.squirrel-girl-preview,"

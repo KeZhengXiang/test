@@ -5,7 +5,6 @@ import 'package:myapp/ui/loading.dart';
 void main(){
 //  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
-  Global();
   Global.init();
 }
 

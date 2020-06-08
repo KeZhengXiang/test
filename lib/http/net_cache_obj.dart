@@ -2,8 +2,17 @@ import 'dart:collection';
 import 'package:dio/dio.dart';
 import 'package:myapp/common/global.dart';
 
+//额外参数配置
+//class ExtraKey{
+//  static const String noCache = "noCache";// 标记是否缓存当前网络数据单元
+//  static const String refresh = "refresh";// 标记是否是"下拉刷新"
+//  static const String list = "list";
+//
+//
+//}
 
 
+//网络数据缓存对象（网络数据单元）
 class CacheObject {
   CacheObject(this.response) : timeStamp = DateTime.now().millisecondsSinceEpoch;
 
@@ -19,6 +28,7 @@ class CacheObject {
   int get hashCode => response.realUri.hashCode;
 }
 
+//网络数据缓存插件（拦截器）
 class NetCache extends Interceptor {
   // 为确保迭代器顺序和对象插入时间一致顺序一致，我们使用LinkedHashMap
   var cache = LinkedHashMap<String, CacheObject>();
