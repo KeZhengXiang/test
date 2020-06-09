@@ -12,7 +12,7 @@ import 'package:video_player/video_player.dart';
 
 // 媒体（打开照片库、拍摄照片、打开视频库、拍摄视频）
 class TestMedia extends StatefulWidget {
-  TestMedia({Key key, this.title}) : super(key: key);
+  TestMedia({Key key, this.title = "媒体（打开照片库、拍摄照片、打开视频库、拍摄视频）"}) : super(key: key);
 
   final String title;
 

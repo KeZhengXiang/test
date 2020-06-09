@@ -1,14 +1,12 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:myapp/common/route_name.dart';
 import 'package:myapp/event/event_mgr.dart';
 import 'package:myapp/common/global.dart';
 import 'package:myapp/common/log_utils.dart';
-import 'package:myapp/http/Git.dart';
 import 'package:myapp/ui/home_pg/child/home_one.dart';
 import 'package:myapp/ui/home_pg/child/home_two.dart';
-import 'package:myapp/test/test_main.dart';
-import 'package:myapp/ui/login_route.dart';
 import 'child/two_child/two_video_controller.dart';
 
 
@@ -115,9 +113,7 @@ class _CustomHomeState extends State<CustomHome> {
                         icon: Icon(Icons.send),
                         label: Text("测试"),
                         onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) {
-                            return TestMain();
-                          }));
+                          Navigator.pushNamed(context, RouteName.TestMain);
                         },
                       ),
                       RaisedButton.icon(
@@ -125,9 +121,7 @@ class _CustomHomeState extends State<CustomHome> {
                         label: Text("登录"),
                         onPressed: (){
 //                        Git(context).login(login, pwd);
-                          Navigator.push(context, MaterialPageRoute(builder: (context) {
-                            return LoginRoute();
-                          }));
+                          Navigator.pushNamed(context, RouteName.LoginRoute);
                         },
                       ),
                     ],

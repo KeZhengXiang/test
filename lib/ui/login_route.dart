@@ -6,6 +6,7 @@ import 'package:myapp/http/Git.dart';
 import 'package:myapp/models/user.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
+//登录页面
 class LoginRoute extends StatefulWidget {
   @override
   _LoginRouteState createState() => _LoginRouteState();

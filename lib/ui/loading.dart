@@ -1,15 +1,11 @@
 
 import 'dart:async';
 import 'package:myapp/common/log_utils.dart';
-import 'package:myapp/http/Git.dart';
-import 'package:myapp/ui/home_pg/custom_home.dart';
-import 'package:myapp/ui/home_pg/home.dart';
+import 'package:myapp/common/route_name.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/common/global.dart';
-import '../http/net_work.dart';
 
 //启动页
 class Loading extends StatefulWidget {
@@ -165,10 +161,7 @@ class _LoadingState extends State<Loading>
   }
 
   void goHome(){
-
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return CustomHome();
-    }));
+    Navigator.pushNamedAndRemoveUntil(context, RouteName.CustomHome, (route) => false);
   }
 }
 

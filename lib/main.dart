@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/common/global.dart';
+import 'package:myapp/common/route_name.dart';
+import 'package:myapp/test/constrained_box.dart';
+import 'package:myapp/test/media/test_media.dart';
+import 'package:myapp/test/test_easy_dialog.dart';
+import 'package:myapp/test/test_flutter_custom_dailog.dart';
+import 'package:myapp/test/test_main.dart';
+import 'package:myapp/test/test_progress_dialog.dart';
+import 'package:myapp/test/test_toast.dart';
+import 'package:myapp/ui/home_pg/custom_home.dart';
 import 'package:myapp/ui/loading.dart';
+import 'package:myapp/ui/login_route.dart';
 
 void main(){
 //  WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +26,25 @@ class MyApp extends StatelessWidget {
 //      theme: ThemeData(
 //        primarySwatch: Colors.blue,
 //      ),
-    themeMode: ThemeMode.dark,
+//    themeMode: ThemeMode.dark,
+
+      // 注册
+      initialRoute: RouteName.Loading,
+      routes: {
+        RouteName.Loading: (context) => Loading(),
+        RouteName.LoginRoute: (context) => LoginRoute(),
+        RouteName.CustomHome: (context) => CustomHome(),
+
+        //test
+        RouteName.TestMain: (context) => TestMain(),
+        RouteName.TestToast: (context) => TestToast(),
+        RouteName.TestProgressDialog: (context) => TestProgressDialog(),
+        RouteName.TestEasyDialog: (context) => TestEasyDialog(),
+        RouteName.TestFlutterCustomDailog: (context) => TestFlutterCustomDailog(),
+        RouteName.TestConstrainedBox: (context) => TestConstrainedBox(),
+        RouteName.TestMedia: (context) => TestMedia(),
+
+      },
       home: Loading(),
     );
   }

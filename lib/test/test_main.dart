@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:myapp/common/global.dart';
 import 'package:myapp/common/log_utils.dart';
+import 'package:myapp/common/route_name.dart';
 import 'package:myapp/test/test_easy_dialog.dart';
 import 'package:myapp/test/test_flutter_custom_dailog.dart';
 import 'package:myapp/test/test_progress_dialog.dart';
@@ -44,18 +45,14 @@ class _TestMainState extends State<TestMain> {
               child: Text("test_toast"),
               disabledColor: Colors.lightBlueAccent,
               onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return TestToast();
-                }));
+                Navigator.pushNamed(context, RouteName.TestToast);
               },
             ),
             RaisedButton(
               child: Text("test_progress_dialog"),
               disabledColor: Colors.lightBlueAccent,
               onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return TestProgressDialog();
-                }));
+                Navigator.pushNamed(context, RouteName.TestProgressDialog);
               },
             ),
             //TestEasyDialog
@@ -63,18 +60,14 @@ class _TestMainState extends State<TestMain> {
               child: Text("test_easy_dialog"),
               disabledColor: Colors.lightBlueAccent,
               onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return TestEasyDialog();
-                }));
+                Navigator.pushNamed(context, RouteName.TestEasyDialog);
               },
             ),
             RaisedButton(
               child: Text("test_flutter_custom_dialog"),
               disabledColor: Colors.lightBlueAccent,
               onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return TestFlutterCustomDailog();
-                }));
+                Navigator.pushNamed(context, RouteName.TestFlutterCustomDailog);
               },
             ),
 
@@ -82,9 +75,7 @@ class _TestMainState extends State<TestMain> {
               child: Text("test_constrained_box  约束盒子组件"),
               disabledColor: Colors.lightBlueAccent,
               onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return TestConstrainedBox();
-                }));
+                Navigator.pushNamed(context, RouteName.TestConstrainedBox);
               },
             ),
 
@@ -102,9 +93,7 @@ class _TestMainState extends State<TestMain> {
               child: Text("媒体（打开照片库、拍摄照片、打开视频库、拍摄视频） image_picker"),
               disabledColor: Colors.lightBlueAccent,
               onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return TestMedia(title: "媒体（打开照片库、拍摄照片、打开视频库、拍摄视频） image_picker",);
-                  }));
+                Navigator.pushNamed(context, RouteName.TestMedia);
               },
             ),
 
