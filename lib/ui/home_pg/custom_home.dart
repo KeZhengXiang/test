@@ -5,6 +5,7 @@ import 'package:myapp/common/route_name.dart';
 import 'package:myapp/event/event_mgr.dart';
 import 'package:myapp/common/global.dart';
 import 'package:myapp/common/log_utils.dart';
+import 'package:myapp/test/test_main.dart';
 import 'package:myapp/ui/home_pg/child/home_one.dart';
 import 'package:myapp/ui/home_pg/child/home_two.dart';
 import 'child/two_child/two_video_controller.dart';
@@ -113,7 +114,8 @@ class _CustomHomeState extends State<CustomHome> {
                         icon: Icon(Icons.send),
                         label: Text("测试"),
                         onPressed: (){
-                          Navigator.pushNamed(context, RouteName.TestMain);
+//                          Navigator.pushNamed(context, RouteName.TestMain);
+                          Navigator.of(context).push(CustomRoute(TestMain()));
                         },
                       ),
                       RaisedButton.icon(
