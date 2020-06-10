@@ -11,6 +11,8 @@ class RouteName {
   static const String CustomHome = "CustomHome";
 
 
+  //主页
+  static const String DyMain = "DyMain";
 
 
   //----test

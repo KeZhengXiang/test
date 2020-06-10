@@ -126,6 +126,13 @@ class _CustomHomeState extends State<CustomHome> {
                           Navigator.pushNamed(context, RouteName.LoginRoute);
                         },
                       ),
+                      RaisedButton.icon(
+                        icon: Icon(Icons.send),
+                        label: Text("抖音app"),
+                        onPressed: (){
+                          Navigator.pushNamedAndRemoveUntil(context, RouteName.DyMain, (route) => false);
+                        },
+                      ),
                     ],
                   ),
                 ),

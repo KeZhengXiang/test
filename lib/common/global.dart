@@ -131,12 +131,16 @@ class Global {
     statusBarHeight = ScreenUtil.statusBarHeight;
     bottomBarHeight = ScreenUtil.bottomBarHeight;
 
+
+
     LogUtils.log("\n "
         "设备像素密度；${ScreenUtil.pixelRatio} \n "
         "设备宽度；$screenWidth \n "
         "设备高度；$screenHeight \n "
         "状态栏高度；$statusBarHeight \n "
         "底部安全区距离；$bottomBarHeight");
+
+
   }
 
   static void getPackageInfo() async {

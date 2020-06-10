@@ -125,13 +125,23 @@ class _HomeOneState extends State<HomeOne>
             ),
           ),
 
-          Container(
-            height: 40,
-            child: tabBar,
-          ),
+//          Container(
+//            height: 40,
+//            child: tabBar,
+//          ),
 
           Expanded(
-            child: tabBarView,
+            child: Stack(
+
+              children: <Widget>[
+                tabBarView,
+                Container(
+                  height: 40,
+                  child: tabBar,
+                ),
+              ],
+            ),
+//            child: tabBarView,
           ),
         ],
       ),

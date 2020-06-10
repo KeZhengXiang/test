@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:myapp/event/event_mgr.dart';
 import 'package:myapp/common/global.dart';
 import 'package:myapp/common/log_utils.dart';
-import 'package:myapp/ui/home_pg/child/two_child/dy_video/dy_video.dart';
 import 'package:myapp/ui/home_pg/child/two_child/new_video/new_video.dart';
 import 'package:myapp/ui/home_pg/child/two_child/two_video_controller.dart';
 
@@ -79,11 +78,11 @@ with SingleTickerProviderStateMixin{// vsync
       controller: _tabController,
       children: <Widget>[
         NewVideo(widget.height - (Global.statusBarHeight + 40), title: tabs[0],),
-        DyVideo(widget.height - (Global.statusBarHeight + 40), title: tabs[1],),
-//        Container(
-//          color: Colors.tealAccent,
-//          child: Center(child: Text(tabs[1],textScaleFactor: 5,)),
-//        ),
+//        DyVideo(widget.height - (Global.statusBarHeight + 40), title: tabs[1],),
+        Container(
+          color: Colors.tealAccent,
+          child: Center(child: Text(tabs[1],textScaleFactor: 5,)),
+        ),
         Container(
           color: Colors.tealAccent,
           child: Center(child: Text(tabs[2],textScaleFactor: 5,)),

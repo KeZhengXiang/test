@@ -1,16 +1,19 @@
 
 import 'dart:async';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/event/event_mgr.dart';
 import 'package:myapp/common/global.dart';
 import 'package:myapp/common/log_utils.dart';
+import 'package:myapp/models/dy_model/dy_video_model.dart';
 import 'package:myapp/ui/home_pg/child/two_child/two_video_controller.dart';
 import 'package:video_player/video_player.dart';
 
 //视频层组件
 class DyVideoItem extends StatefulWidget {
+  final DyVideoModel model;
   final int index;
   final double width;
   final double height;
@@ -18,7 +21,7 @@ class DyVideoItem extends StatefulWidget {
   final Function _pause;
   final Function _play;
 
-  DyVideoItem(this.index,this.width,this.height, this._pause, this._play,{Key key, this.title = "我",}) : super(key: key);
+  DyVideoItem(this.model, this.index,this.width,this.height, this._pause, this._play,{Key key, this.title = "我",}) : super(key: key);
 
   @override
   _DyVideoItemState createState() => _DyVideoItemState();
@@ -36,6 +39,8 @@ class _DyVideoItemState extends State<DyVideoItem> {
     // TODO: implement initState
     super.initState();
     LogUtils.log("    ----  DyVideoItem initState ${widget.index}");
+
+    _url = widget.model.url;
 
     _eventBus = Global.eventBus.on<DYChangeIndexEvent>().listen((event) {
       // All events are of type UserLoggedInEvent (or subtypes of it).
@@ -77,63 +82,54 @@ class _DyVideoItemState extends State<DyVideoItem> {
   @override
   Widget build(BuildContext context) {
     LogUtils.log("DyVideoItem build ${widget.index}",type: 2);
-    return Column(
+    var tansparentColor = Color(0x0);
+    return Stack(
       children: <Widget>[
-        //播放器
+        // 播放器
         Container(
           width: widget.width,
           height: widget.height,
-          color: Colors.grey,
-          child: Stack(
-            children: <Widget>[
-              // 播放器
-              Container(
-                width: widget.width,
-                height: widget.height,
-                color: Colors.grey,
-                child: Center(
-                  child: _controller.value.initialized
-                      ? AspectRatio(
-                    aspectRatio: _controller.value.aspectRatio,
-                    child: VideoPlayer(_controller),
-                  ): Container(),
-                ),
-              ),
+          color: tansparentColor,
+          child: Center(
+            child: _controller.value.initialized
+                ? AspectRatio(
+              aspectRatio: _controller.value.aspectRatio,
+              child: VideoPlayer(_controller),
+            ): Container(),
+          ),
+        ),
 
-              //封面
-//              CachedNetworkImage(
-//                width: widget.width,
-//                height: widget.height,
-//                fit: BoxFit.contain,
-//                imageUrl: "http://cms-bucket.ws.126.net/2020/0501/ce55fb88p00q9n3ww002tc0009c005uc.png",
-////                placeholder: (context, url) => Image.asset("images/app.jpg"),
-////                errorWidget: (context, url, error) =>
-////                    Image.asset("images/app.jpg"),
-//              )
+        //封面
+        Offstage(
+          offstage: _controller.value.initialized,//隐藏条件
+          child: CachedNetworkImage(
+            width: widget.width,
+            height: widget.height,
+            fit: BoxFit.contain,
+            imageUrl: widget.model.cover,
+//                placeholder: (context, url) => Image.asset("images/app.jpg"),
+//                errorWidget: (context, url, error) =>
+//                    Image.asset("images/app.jpg"),
+          ),
+        ),
 
-              // 播放控制
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _controller.value.isPlaying
-                        ? pause()
-                        : play();
-                  });
-                },
-                child: Container(
-                  width: widget.width,
-                  height: widget.height,
-                  color: Color(0x0ffffff),
-                  child: Center(
-                    child: _controller.value.isPlaying ? Text("") : Icon(Icons.play_arrow),
-                  ),
-                ),
-              ),
-            ],
+        // 播放控制
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              _controller.value.isPlaying ? pause() : play();
+            });
+          },
+          child: Container(
+            width: widget.width,
+            height: widget.height,
+            color: Color(0x0ffffff),
+            child: Center(
+              child: _controller.value.isPlaying ? Text("") : Icon(Icons.play_arrow),
+            ),
           ),
         ),
       ],
-//      color: Col
     );
 
   }

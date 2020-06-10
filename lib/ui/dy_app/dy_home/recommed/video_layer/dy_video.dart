@@ -9,15 +9,18 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:myapp/event/event_mgr.dart';
 import 'package:myapp/common/global.dart';
 import 'package:myapp/common/log_utils.dart';
+import 'package:myapp/models/dy_model/dy_video_model.dart';
 import 'package:myapp/ui/home_pg/child/two_child/two_video_controller.dart';
 
 import 'dy_video_item.dart';
 
 
 class DyVideo extends StatefulWidget {
+  final List<DyVideoModel> videos;
+  final double width;
   final double height;
   final String title;
-  DyVideo(this.height,{Key key, this.title = "null"}) : super(key: key);
+  DyVideo(this.videos, this.width,this.height,{Key key, this.title = "null"}) : super(key: key);
 
   @override
   _DyVideoState createState() => _DyVideoState();
@@ -74,7 +77,7 @@ class _DyVideoState extends State<DyVideo>
     Swiper swiper = Swiper(
       itemBuilder: (BuildContext context,int index){
         LogUtils.log("create  index = $index");
-        return DyVideoItem(index,Global.screenWidth, widget.height,(){
+        return DyVideoItem(widget.videos[index], index, widget.width, widget.height,(){
           //pause
           videoMgr.clist.forEach((element) {
             element.pause();
@@ -103,14 +106,11 @@ class _DyVideoState extends State<DyVideo>
     return Container(
       width: Global.screenWidth,
       height: widget.height,
+      color: Color(0x0),
       child: Stack(
         children: <Widget>[
-          //视频窗口
-          swiper,
-
-          //下方窗口
-
-          //右侧窗口
+          //视频列表
+          swiper
         ],
       ),
     );
