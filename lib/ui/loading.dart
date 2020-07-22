@@ -1,7 +1,7 @@
 
 import 'dart:async';
 import 'package:myapp/common/log_utils.dart';
-import 'package:myapp/common/route_name.dart';
+import 'package:myapp/route_name.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -87,8 +87,8 @@ class _LoadingState extends State<Loading>
                   _launchURL(url: url);
 
                 },
-                child:Image.asset("images/launch_background.jpeg",
-                  fit: BoxFit.cover,
+                child:Image.asset("images/launch_background2.jpg"/*"images/launch_background.jpeg"*/,
+                  fit: BoxFit.fill, width: Global.screenWidth, height: Global.screenHeight,
                 ),
 //                width: Global.screen_width,
               ),//back.jpg

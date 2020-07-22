@@ -1,21 +1,10 @@
 //测试主页
-import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:myapp/common/global.dart';
-import 'package:myapp/common/log_utils.dart';
-import 'package:myapp/common/route_name.dart';
-import 'package:myapp/test/test_easy_dialog.dart';
-import 'package:myapp/test/test_flutter_custom_dailog.dart';
-import 'package:myapp/test/test_progress_dialog.dart';
-import 'package:myapp/test/test_toast.dart';
-
+import 'package:myapp/route_name.dart';
 import 'comment/comment.dart';
-import 'constrained_box.dart';
-import 'media/test_media.dart';
-
 
 class TestMain extends StatefulWidget {
   final String title;
@@ -97,6 +86,14 @@ class _TestMainState extends State<TestMain> {
               },
             ),
 
+            //ExpansionTileSample
+            RaisedButton(
+              child: Text("ExpansionTileSample 展开/折叠列表"),
+              disabledColor: Colors.lightBlueAccent,
+              onPressed: (){
+                Navigator.pushNamed(context, RouteName.ExpansionTileSample);
+              },
+            ),
 
           ],
         ),

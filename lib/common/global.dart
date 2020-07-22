@@ -109,6 +109,7 @@ class Global {
     if(isTransferUiInit) return;
     isTransferUiInit = true;
 
+    LogUtils.log("============================flutter=================================");
     LogUtils.log("是否为release版: $isRelease");
 
     getPackageInfo();
@@ -130,8 +131,6 @@ class Global {
     screenHeight = ScreenUtil.screenHeightDp;
     statusBarHeight = ScreenUtil.statusBarHeight;
     bottomBarHeight = ScreenUtil.bottomBarHeight;
-
-
 
     LogUtils.log("\n "
         "设备像素密度；${ScreenUtil.pixelRatio} \n "

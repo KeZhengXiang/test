@@ -41,7 +41,7 @@ with SingleTickerProviderStateMixin{// vsync
       }
     });
 
-    _tabController = TabController(length: tabs.length, vsync: this, initialIndex: 0)
+    _tabController = TabController(length: tabs.length, initialIndex: 0, vsync: this)
     ..addListener((){
       if (this.mounted == false) return;
       if(_tabController.indexIsChanging == false)

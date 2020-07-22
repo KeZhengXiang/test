@@ -94,7 +94,7 @@ class _DyVideoState extends State<DyVideo>
       scrollDirection: Axis.vertical,
       autoplay: false,
 
-      itemCount: itemCount,
+      itemCount: widget.videos.length,
       control: _swiperControl,
       onIndexChanged: (int index){
         Global.eventBus.fire(DYChangeIndexEvent(index));

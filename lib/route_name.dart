@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//路由管理
 class RouteName {
 
   //启动页
@@ -34,8 +35,9 @@ class RouteName {
   static const String TestMedia = "TestMedia";
 
 
-
-
+  //------Sample
+  //
+  static const String ExpansionTileSample = "ExpansionTileSample";
 
 }
 

@@ -3,6 +3,8 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:myapp/common/global.dart';
 import 'package:myapp/common/log_utils.dart';
 import 'package:myapp/ui/dy_app/dy_home/dy_home.dart';
@@ -22,6 +24,7 @@ class DyMain extends StatefulWidget {
 
 class _DyMainState extends State<DyMain> {
 
+  DateTime lastPopTime;
   PageController controller = PageController(
       initialPage: 0,
       keepPage: true, //是否保存页面状态
@@ -57,42 +60,59 @@ class _DyMainState extends State<DyMain> {
       ],
     );
 
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: Container(
-        width: Global.screenWidth,
-        height: Global.screenHeight,
+    return WillPopScope(
+      onWillPop: (){
+        // 点击返回键的操作
+        if (lastPopTime == null || DateTime.now().difference(lastPopTime) > Duration(seconds: 2)) {
+          lastPopTime = DateTime.now();
+          Fluttertoast.showToast(
+              msg: "再按一次退出",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1);
+        } else {
+          lastPopTime = DateTime.now();
+          // 退出app
+          SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+        }
+      },
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        body: Container(
+          width: Global.screenWidth,
+          height: Global.screenHeight,
 
-        child: Stack(
-          children: <Widget>[
-            //显示区
-            Positioned(
-              top: 0,
-              child: Container(
-                width: Global.screenWidth,
-                height: bodyHeight,
-                child: pageView,
-              ),
-            ),
-
-            //底部菜单区
-            Positioned(
-              bottom: Global.bottomBarHeight,
-              child: BottomNavigationWidget(Global.screenWidth, bottomHeight, pageChange),
-            ),
-
-            //底部安全区
-            Positioned(
-              bottom: 0,
-              child: Offstage(
-                offstage: Global.bottomBarHeight <= 0,//隐藏条件
+          child: Stack(
+            children: <Widget>[
+              //显示区
+              Positioned(
+                top: 0,
                 child: Container(
                   width: Global.screenWidth,
-                  height: Global.bottomBarHeight,
+                  height: bodyHeight,
+                  child: pageView,
                 ),
               ),
-            ),
-          ],
+
+              //底部菜单区
+              Positioned(
+                bottom: Global.bottomBarHeight,
+                child: BottomNavigationWidget(Global.screenWidth, bottomHeight, pageChange),
+              ),
+
+              //底部安全区
+              Positioned(
+                bottom: 0,
+                child: Offstage(
+                  offstage: Global.bottomBarHeight <= 0,//隐藏条件
+                  child: Container(
+                    width: Global.screenWidth,
+                    height: Global.bottomBarHeight,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

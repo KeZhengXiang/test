@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:myapp/common/global.dart';
-import 'package:myapp/common/route_name.dart';
+import 'package:myapp/route_name.dart';
 import 'package:myapp/test/constrained_box.dart';
 import 'package:myapp/test/media/test_media.dart';
+import 'package:myapp/test/sample/ExpansionTileSample.dart';
 import 'package:myapp/test/test_easy_dialog.dart';
 import 'package:myapp/test/test_flutter_custom_dailog.dart';
 import 'package:myapp/test/test_main.dart';
@@ -15,9 +16,13 @@ import 'package:myapp/ui/loading.dart';
 import 'package:myapp/ui/login_route.dart';
 
 void main(){
+
 //  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(MyApp());
+
   Global.init();
+
   //修改状态栏颜色为白色
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
 }
@@ -30,9 +35,9 @@ class MyApp extends StatelessWidget {
 //      theme: ThemeData(
 //        primarySwatch: Colors.blue,
 //      ),
-//    themeMode: ThemeMode.dark,
+//      themeMode: ThemeMode.dark,
 
-      // 注册
+      // 注册路由
       initialRoute: RouteName.Loading,
       routes: {
         RouteName.Loading: (context) => Loading(),
@@ -51,6 +56,8 @@ class MyApp extends StatelessWidget {
         RouteName.TestConstrainedBox: (context) => TestConstrainedBox(),
         RouteName.TestMedia: (context) => TestMedia(),
 
+        //Sample
+        RouteName.ExpansionTileSample: (context) => ExpansionTileSample(),
       },
       home: Loading(),
     );

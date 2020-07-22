@@ -1,7 +1,9 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:myapp/common/route_name.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:myapp/route_name.dart';
 import 'package:myapp/event/event_mgr.dart';
 import 'package:myapp/common/global.dart';
 import 'package:myapp/common/log_utils.dart';
@@ -23,6 +25,7 @@ class CustomHome extends StatefulWidget {
 
 class _CustomHomeState extends State<CustomHome> {
 
+  DateTime lastPopTime;
   PageController controller = PageController(
       initialPage: 0,
       keepPage: true, //是否保存页面状态
@@ -54,96 +57,115 @@ class _CustomHomeState extends State<CustomHome> {
     );
 
 
-    return Scaffold(
-      body: Container(
-        color: Colors.white,
-        width: Global.screenWidth,
-        height: Global.screenHeight,
-        child: Stack(
-          children: <Widget>[
+    return WillPopScope(
+        onWillPop: (){
+          // 点击返回键的操作
+          if (lastPopTime == null || DateTime.now().difference(lastPopTime) > Duration(seconds: 2)) {
+            lastPopTime = DateTime.now();
+            Fluttertoast.showToast(
+                msg: "再按一次退出",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1);
+          } else {
+            lastPopTime = DateTime.now();
+            // 退出app
+            SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+          }
+        },
+      child: Scaffold(
+        body: Container(
+          color: Colors.white,
+          width: Global.screenWidth,
+          height: Global.screenHeight,
+          child: Stack(
+            children: <Widget>[
 
-            //显示区
-            Positioned(
-              top: 0,
-              child: Container(
-                width: Global.screenWidth,
-                height: Global.screenHeight - (Global.bottomBarHeight + bottom_height),
-                child: Center(
-//                  child: Text("body"),
-                  child: pageView,
-                ),
-              ),
-            ),
-
-            //底部菜单区
-            Positioned(
-              bottom: Global.bottomBarHeight,
-              child: Container(
-                width: Global.screenWidth,
-                height: bottom_height,
-                color: Colors.red,
-                child: CustomTabBarItem(bottom_height,pageChange),
-              ),
-            ),
-
-            //底部安全区
-            Positioned(
-              bottom: 0,
-              child: Offstage(
-                offstage: Global.bottomBarHeight <= 0,//隐藏条件
+              //显示区
+              Positioned(
+                top: 0,
                 child: Container(
                   width: Global.screenWidth,
-                  height: Global.bottomBarHeight,
-                  color: Colors.red,
-                ),
-              ),
-            ),
-
-            //测试
-            Positioned(
-              left: 20,
-              top: 200,
-              child: Opacity(
-                opacity: 0.7,
-                child: Container(
-                  width: 120,
-                  height: 200,
-                  child: ListView(
-                    children: <Widget>[
-                      RaisedButton.icon(
-                        icon: Icon(Icons.send),
-                        label: Text("测试"),
-                        onPressed: (){
-//                          Navigator.pushNamed(context, RouteName.TestMain);
-                          Navigator.of(context).push(CustomRoute(TestMain()));
-                        },
-                      ),
-                      RaisedButton.icon(
-                        icon: Icon(Icons.send),
-                        label: Text("登录"),
-                        onPressed: (){
-//                        Git(context).login(login, pwd);
-                          Navigator.pushNamed(context, RouteName.LoginRoute);
-                        },
-                      ),
-                      RaisedButton.icon(
-                        icon: Icon(Icons.send),
-                        label: Text("抖音app"),
-                        onPressed: (){
-                          Navigator.pushNamedAndRemoveUntil(context, RouteName.DyMain, (route) => false);
-                        },
-                      ),
-                    ],
+                  height: Global.screenHeight - (Global.bottomBarHeight + bottom_height),
+                  child: Center(
+//                  child: Text("body"),
+                    child: pageView,
                   ),
                 ),
               ),
-            ),
-            
-            
-          ],
+
+              //底部菜单区
+              Positioned(
+                bottom: Global.bottomBarHeight,
+                child: Container(
+                  width: Global.screenWidth,
+                  height: bottom_height,
+                  color: Colors.red,
+                  child: CustomTabBarItem(bottom_height,pageChange),
+                ),
+              ),
+
+              //底部安全区
+              Positioned(
+                bottom: 0,
+                child: Offstage(
+                  offstage: Global.bottomBarHeight <= 0,//隐藏条件
+                  child: Container(
+                    width: Global.screenWidth,
+                    height: Global.bottomBarHeight,
+                    color: Colors.red,
+                  ),
+                ),
+              ),
+
+              //测试
+              Positioned(
+                left: 20,
+                top: 200,
+                child: Opacity(
+                  opacity: 0.7,
+                  child: Container(
+                    width: 120,
+                    height: 200,
+                    child: ListView(
+                      children: <Widget>[
+                        RaisedButton.icon(
+                          icon: Icon(Icons.send),
+                          label: Text("测试"),
+                          onPressed: (){
+                          Navigator.pushNamed(context, RouteName.TestMain);
+//                            Navigator.of(context).push(CustomRoute(TestMain()));
+                          },
+                        ),
+                        RaisedButton.icon(
+                          icon: Icon(Icons.send),
+                          label: Text("登录"),
+                          onPressed: (){
+//                        Git(context).login(login, pwd);
+                            Navigator.pushNamed(context, RouteName.LoginRoute);
+                          },
+                        ),
+                        RaisedButton.icon(
+                          icon: Icon(Icons.send),
+                          label: Text("抖音"),
+                          onPressed: (){
+                            Navigator.pushNamedAndRemoveUntil(context, RouteName.DyMain, (route) => false);
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+
+
+            ],
+          ),
         ),
       ),
+
     );
+
   }
 
   // 点击home标签回调响应
